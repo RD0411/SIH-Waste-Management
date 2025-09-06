@@ -189,7 +189,7 @@ const EnforcementView = () => {
                   <div className="h5 mb-0 font-weight-bold text-gray-800">{violations.length}</div>
                 </div>
                 <div className="col-auto">
-                  <i className="fas fa-exclamation-triangle fa-2x text-gray-300"></i>
+                  <i className="fas fa-exclamation-triangle fa-2x text-danger"></i>
                 </div>
               </div>
             </div>
@@ -209,7 +209,7 @@ const EnforcementView = () => {
                   </div>
                 </div>
                 <div className="col-auto">
-                  <i className="fas fa-filter fa-2x text-gray-300"></i>
+                  <i className="fas fa-filter fa-2x text-warning"></i>
                 </div>
               </div>
             </div>
@@ -229,7 +229,7 @@ const EnforcementView = () => {
                   </div>
                 </div>
                 <div className="col-auto">
-                  <i className="fas fa-money-bill-wave fa-2x text-gray-300"></i>
+                  <i className="fas fa-money-bill-wave fa-2x text-info"></i>
                 </div>
               </div>
             </div>
@@ -249,7 +249,7 @@ const EnforcementView = () => {
                   </div>
                 </div>
                 <div className="col-auto">
-                  <i className="fas fa-check-circle fa-2x text-gray-300"></i>
+                  <i className="fas fa-check-circle fa-2x text-success"></i>
                 </div>
               </div>
             </div>
