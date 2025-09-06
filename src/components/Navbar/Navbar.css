@@ -1,0 +1,218 @@
+/* Navbar Styles */
+
+:root {
+    --primary-color: #3a56e4;
+    --secondary-color: #1e293b;
+    --accent-color: #818cf8;
+    --text-light: #f8fafc;
+    --text-dark: #1e293b;
+    --transition-speed: 0.3s;
+}
+
+.navbar {
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    padding: 0.6rem 1rem;
+    background: linear-gradient(120deg, var(--secondary-color), #0f172a) !important;
+}
+
+.navbar-brand {
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    margin-left: 0.5rem;
+}
+
+.brand-icon {
+    background: var(--primary-color);
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+}
+
+.navbar-toggler {
+    border: none;
+    padding: 0.5rem;
+    border-radius: 10px;
+    transition: all var(--transition-speed);
+}
+
+.navbar-toggler:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Enhanced Offcanvas */
+.offcanvas-start {
+    width: 300px;
+    background: linear-gradient(to bottom, var(--secondary-color), #0f172a);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.offcanvas-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1.2rem 1.5rem;
+}
+
+.offcanvas-title {
+    font-weight: 700;
+    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+}
+
+.offcanvas-title i {
+    margin-right: 10px;
+    color: var(--accent-color);
+}
+
+.btn-close {
+    background: transparent;
+    opacity: 0.7;
+    transition: opacity var(--transition-speed);
+}
+
+.btn-close:hover {
+    opacity: 1;
+}
+
+/* Navigation Items */
+.nav-item {
+    margin: 0.4rem 0.8rem;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.nav-link {
+    color: rgba(255, 255, 255, 0.85);
+    padding: 0.8rem 1rem;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    transition: all var(--transition-speed);
+    font-weight: 500;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    transform: translateX(5px);
+}
+
+.nav-link i {
+    width: 24px;
+    margin-right: 12px;
+    font-size: 1.1rem;
+}
+
+/* Dropdown Styling */
+.dropdown-menu {
+    background-color: rgba(30, 41, 59, 0.95);
+    border: none;
+    border-radius: 10px;
+    margin-top: 5px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    padding: 0.5rem;
+}
+
+.dropdown-item {
+    color: rgba(255, 255, 255, 0.85);
+    padding: 0.7rem 1rem;
+    border-radius: 8px;
+    transition: all var(--transition-speed);
+}
+
+.dropdown-item:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.dropdown-divider {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Search Form */
+.search-form {
+    margin: 1.5rem 0.8rem;
+}
+
+.search-form .form-control {
+    background: rgba(255, 255, 255, 0.08);
+    border: none;
+    color: white;
+    padding: 0.8rem 1rem;
+    border-radius: 10px;
+}
+
+.search-form .form-control::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.search-form .btn {
+    border-radius: 10px;
+    padding: 0.8rem 1.2rem;
+    background-color: var(--primary-color);
+    border: none;
+}
+
+.search-form .btn:hover {
+    background-color: #2940d3;
+}
+
+/* User Section */
+.user-section {
+    padding: 1.5rem;
+    margin-top: auto;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.user-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.user-details {
+    width: 50%;
+    /* flex: 1; */
+}
+
+.user-name {
+    color: white;
+    font-weight: 600;
+    margin-bottom: 0.2rem;
+}
+
+.user-role {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.85rem;
+}
+
+.user-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+}
+
+.user-actions .btn {
+    border-radius: 8px;
+    font-size: 0.9rem;
+    padding: 0.5rem;
+}
