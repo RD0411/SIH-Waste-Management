@@ -19,7 +19,7 @@ If you are developing a production application, we recommend using TypeScript wi
 <img width="1919" height="940" alt="Screenshot 2025-09-06 203743" src="https://github.com/user-attachments/assets/353175a2-6336-4102-855a-7b04258beb67" />
 
 <h2>Page 2 : Fleet and Workforce Management</h2>
-<img width="1902" height="922" alt="Screenshot 2025-09-06 204225" src="https://github.com/user-attachments/assets/18384be7-25e2-4558-9aa4-da455ba6331d" />
+<img width="1918" height="985" alt="image" src="https://github.com/user-attachments/assets/0319e507-c755-4a65-844e-9b5a6442cc2a" />
 
 <h2>Page 3 : Issue Resolution</h2>
 <img width="1911" height="936" alt="image" src="https://github.com/user-attachments/assets/2dc79ffb-86e0-41f3-a9c0-b187e4a426cd" />
