@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- RecyclerView -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvAssigned"
+        android:layout_width="match_parent"
+        android:layout_height="657dp" />
+
+    <!-- Sample Data Text at Bottom -->
+    <TextView
+        android:id="@+id/tvSampleData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="#66000000"
+        android:gravity="center"
+        android:padding="12dp"
+        android:text="📌 Sample Data: Report Category - Garbage | Notes - Overflowing bin | Location - Pune, India"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp" />
+
+</FrameLayout>
