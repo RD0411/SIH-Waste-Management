@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <!-- Primary Green -->
+    <color name="primaryGreen">#388E3C</color>
+    <color name="primaryGreenVariant">#2E7D32</color>
+    <color name="secondaryGreen">#66BB6A</color>
+
+    <!-- On Colors -->
+    <color name="onPrimary">#FFFFFF</color>
+    <color name="onSecondary">#FFFFFF</color>
+
+    <!-- Background -->
+    <color name="backgroundLight">#E8F5E9</color>
+    <color name="backgroundDark">#1B5E20</color>
+</resources>

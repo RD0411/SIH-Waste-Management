@@ -1,0 +1,22 @@
+<!-- res/drawable/ic_image_placeholder.xml -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Background rectangle -->
+    <path
+        android:fillColor="#DDDDDD"
+        android:pathData="M0,0h24v24h-24z" />
+
+    <!-- Mountain-like shape -->
+    <path
+        android:fillColor="#AAAAAA"
+        android:pathData="M3,17l6,-8l5,6l4,-5l3,7z" />
+
+    <!-- Circle for sun -->
+    <path
+        android:fillColor="#888888"
+        android:pathData="M15.5,8.5a2.5,2.5 0 1,0 -5,0a2.5,2.5 0 1,0 5,0" />
+</vector>
