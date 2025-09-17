@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Base.Theme.WasteManagementDriver" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/primaryGreen</item>
+        <item name="colorOnPrimary">@color/onPrimary</item>
+        <item name="colorPrimaryContainer">@color/primaryGreenVariant</item>
+
+        <item name="colorSecondary">@color/secondaryGreen</item>
+        <item name="colorOnSecondary">@color/onSecondary</item>
+
+        <item name="android:statusBarColor">@color/primaryGreen</item>
+        <item name="android:navigationBarColor">@color/primaryGreen</item>
+
+        <item name="android:windowLightNavigationBar">false</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+</resources>

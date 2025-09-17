@@ -1,0 +1,43 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="#F5F6FA">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Header / Intro -->
+        <TextView
+            android:id="@+id/tvHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="📦 Available Distributions"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:paddingBottom="12dp"
+            android:textColor="#2C3E50" />
+
+        <!-- RecyclerView (auto scrolls inside ScrollView) -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvDistributions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:nestedScrollingEnabled="false" />
+
+        <!-- Footer Section -->
+        <TextView
+            android:id="@+id/tvFooter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="🎉 Collect your kits from the nearest center after confirmation."
+            android:textSize="14sp"
+            android:textColor="#7F8C8D"
+            android:paddingTop="16dp"
+            android:paddingBottom="24dp" />
+
+    </LinearLayout>
+</ScrollView>
