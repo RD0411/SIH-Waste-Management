@@ -1,5 +1,6 @@
 // StatePolicyView.jsx
 import React, { useState } from 'react';
+import StateAnalystNavbar from './StateAnalystNavbar';
 import { 
   Box, Card, CardContent, Typography, Button, Grid, 
   TextField, FormControl, InputLabel, Select, MenuItem, 
@@ -69,6 +70,9 @@ const StatePolicyView = () => {
   };
 
   return (
+
+   <>
+    <StateAnalystNavbar activeItem="state-analysis-policy" />
     <Box>
       <Typography variant="h4" gutterBottom sx={{ mb: 4, 
         background: "linear-gradient(135deg, #1a237e, #283593)",
@@ -228,6 +232,7 @@ const StatePolicyView = () => {
         </Grid>
       </Grid>
     </Box>
+   </>
   );
 };
 

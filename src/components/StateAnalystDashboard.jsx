@@ -14,10 +14,10 @@ export default function StateAnalystDashboard() {
   // Update active item based on current path
   React.useEffect(() => {
     const path = location.pathname;
-    if (path.includes("/reports")) {
-      setActiveItem("reports");
-    } else if (path.includes("/policy")) {
-      setActiveItem("policy");
+    if (path.includes("/state-analysis-reports")) {
+      setActiveItem("state-analysis-reports");
+    } else if (path.includes("/state-analysis-policy")) {
+      setActiveItem("state-analysis-policy");
     } else {
       setActiveItem("dashboard");
     }
@@ -34,8 +34,8 @@ export default function StateAnalystDashboard() {
       <Box component="main" sx={{ flexGrow: 1, p: 3, mt: 8 }}>
         <Routes>
           <Route index element={<StateAnalystView />} />
-          <Route path="reports" element={<StateReportsView />} />
-          <Route path="policy" element={<StatePolicyView />} />
+          <Route path="state-analysis-reports" element={<StateReportsView />} />
+          <Route path="state-analysis-policy" element={<StatePolicyView />} />
         </Routes>
       </Box>
     </Box>

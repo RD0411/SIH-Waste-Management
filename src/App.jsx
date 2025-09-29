@@ -30,6 +30,8 @@ import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 import ProtectedRoute from './components/ProtectedRoute';
 import StateAnalysisDashboard from './components/StateAnalystDashboard';
+import StateReportsView from './components/StateReportsView';
+import StatePolicyView from './components/StatePolicyView';
 import './App.css';
 
 function App() {
@@ -52,6 +54,22 @@ function App() {
               <ProtectedRoute>
                 <StateAnalysisDashboard />
               </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/state-analysis-reports"
+            element={
+              <ProtectedRoute>
+                <StateReportsView />
+               </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/state-analysis-policy"
+            element={
+              <ProtectedRoute>
+                <StatePolicyView />
+               </ProtectedRoute>
             }
           />
         </Routes>

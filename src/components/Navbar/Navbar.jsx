@@ -4,6 +4,7 @@ import "./Navbar.css";
 import NavItem from "./components/NavItem";
 import DropdownMenu from "./components/DropdownMenu";
 import DropdownItem from "./components/DropdownItem";
+import InventoryManagement from "../Inventory/InventoryManagement";
 import UserInfo from "./components/UserInfo";
 import { signOut } from "firebase/auth";
 import { auth } from "../../firebase";
@@ -109,11 +110,32 @@ const Navbar = ({ activeItem, setActiveItem }) => {
                 active={activeItem === "champions"}
                 onClick={() => handleNavClick("champions", "/champions")}
               />
-              <NavItem
+              {/* <NavItem
                 icon="fas fa-chart-line"
                 text="Reports & Analytics"
                 active={activeItem === "analytics"}
                 onClick={() => handleNavClick("analytics", "/analytics")}
+              /> */}
+
+              <NavItem
+                icon="fas fa-recycle"
+                text="Inventory"
+                active={activeItem === "inventory"}
+                onClick={() => handleNavClick("inventory", "/inventory")}
+              />
+
+              <NavItem
+                icon="fas fa-calendar-alt"
+                text="Events"
+                active={activeItem === "events"}
+                onClick={() => handleNavClick("events", "/events")}
+              />
+
+            <NavItem
+                icon="fas fa-chalkboard-teacher"
+                text="Trainings"
+                active={activeItem === "training"}
+                onClick={() => handleNavClick("training", "/training")}
               />
             </ul>
 

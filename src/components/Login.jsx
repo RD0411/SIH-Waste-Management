@@ -128,7 +128,7 @@ const Login = () => {
       >
         <Paper elevation={3} sx={{ padding: 4, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <Typography component="h1" variant="h5">
-            ULB Operator Sign In
+            Sign In
           </Typography>
           <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1, width: '100%' }}>
             <TextField

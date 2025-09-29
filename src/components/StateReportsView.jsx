@@ -1,5 +1,6 @@
 // StateReportsView.jsx
 import React, { useState } from 'react';
+import StateAnalystNavbar from './StateAnalystNavbar';
 import { Box, Card, CardContent, Typography, Button, Grid, FormControl, InputLabel, Select, MenuItem, Chip } from '@mui/material';
 import { Download, PictureAsPdf, InsertDriveFile, Analytics, TrendingUp } from '@mui/icons-material';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
@@ -68,6 +69,8 @@ const StateReportsView = () => {
   });
 
   return (
+    <>
+    <StateAnalystNavbar activeItem="state-analysis-reports" />
     <Box>
       <Typography variant="h4" gutterBottom sx={{ mb: 4, 
         background: "linear-gradient(135deg, #1a237e, #283593)",
@@ -190,6 +193,7 @@ const StateReportsView = () => {
         </Button>
       </Box>
     </Box>
+    </>
   );
 };
 

@@ -7,7 +7,9 @@ import IssuesView from "./IssuesView";
 import EnforcementView from "./EnforcementView";
 import ChampionsView from "./ChampionsView";
 import RouteManagementView from "./RouteManagementView";
-
+import InventoryManagement from "./Inventory/InventoryManagement";
+import EventsManagement from "./Events/EventsManagement";
+import TrainingManagement from "./Training/TrainingManagement";
 export default function Dashboard() {
   const [activeItem, setActiveItem] = useState("dashboard");
 
@@ -26,7 +28,9 @@ export default function Dashboard() {
           <Route path="/issues" element={<IssuesView />} />
           <Route path="/enforcement" element={<EnforcementView />} />
           <Route path="/champions" element={<ChampionsView />} />
-          <Route path="/analytics" element={<div>Analytics View - Coming Soon</div>} />
+          <Route path="/inventory" element={<InventoryManagement />} />
+          <Route path="/events" element={<EventsManagement />} />
+          <Route path="/training" element={<TrainingManagement />} />
         </Routes>
       </Box>
     </Box>

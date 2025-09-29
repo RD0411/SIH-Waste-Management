@@ -21,7 +21,7 @@ const StateAnalystNavbar = ({ activeItem, setActiveItem }) => {
 
   const handleNavigation = (path, itemName) => {
     setActiveItem(itemName);
-    navigate(`/state-analyst/${path}`);
+    navigate(`/${path}`);
   };
 
   return (
@@ -55,11 +55,11 @@ const StateAnalystNavbar = ({ activeItem, setActiveItem }) => {
           </Button>
           <Button 
             color="inherit" 
-            onClick={() => handleNavigation("reports", "reports")}
+            onClick={() => handleNavigation("state-analysis-reports", "state-analysis-reports")}
             startIcon={<Analytics />}
             sx={{ 
-              fontWeight: activeItem === "reports" ? "bold" : "normal",
-              backgroundColor: activeItem === "reports" ? "rgba(255, 255, 255, 0.1)" : "transparent",
+              fontWeight: activeItem === "state-analysis-reports" ? "bold" : "normal",
+              backgroundColor: activeItem === "state-analysis-reports" ? "rgba(255, 255, 255, 0.1)" : "transparent",
               borderRadius: 2
             }}
           >
@@ -67,11 +67,11 @@ const StateAnalystNavbar = ({ activeItem, setActiveItem }) => {
           </Button>
           <Button 
             color="inherit" 
-            onClick={() => handleNavigation("policy", "policy")}
+            onClick={() => handleNavigation("state-analysis-policy", "state-analysis-policy")}
             startIcon={<Policy />}
             sx={{ 
-              fontWeight: activeItem === "policy" ? "bold" : "normal",
-              backgroundColor: activeItem === "policy" ? "rgba(255, 255, 255, 0.1)" : "transparent",
+              fontWeight: activeItem === "state-analysis-policy" ? "bold" : "normal",
+              backgroundColor: activeItem === "state-analysis-policy" ? "rgba(255, 255, 255, 0.1)" : "transparent",
               borderRadius: 2
             }}
           >

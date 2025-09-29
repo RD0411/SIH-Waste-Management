@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { auth } from '../firebase';
+import { collection, getDocs, updateDoc, doc, query, where, orderBy } from 'firebase/firestore';
+import { db } from '../firebase';
 
 const IssuesView = () => {
   const [issues, setIssues] = useState([]);
@@ -7,100 +8,90 @@ const IssuesView = () => {
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-  const [filters, setFilters] = useState({ status: '', type: '', search: '' });
+  const [filters, setFilters] = useState({ status: '', category: '', search: '' });
   const [assignDialogOpen, setAssignDialogOpen] = useState(false);
   const [selectedIssue, setSelectedIssue] = useState(null);
   const [selectedDriver, setSelectedDriver] = useState('');
   const [viewDialogOpen, setViewDialogOpen] = useState(false);
   const [issueDetails, setIssueDetails] = useState(null);
 
-  // Mock data for demonstration
-  const mockIssues = [
-    {
-      id: 1,
-      type: 'illegal_dumping',
-      status: 'RECEIVED',
-      description: "Large pile of construction waste near Central Park entrance",
-      reporter_id: 1001,
-      location_lat: 12.9784,
-      location_lng: 77.6408,
-      created_at: new Date('2023-05-15'),
-      assigned_to: null,
-      reporter_name: "Rahul Sharma",
-      reporter_phone: "+91 9876543210",
-      address: "Near Central Park, Brigade Road, Bengaluru"
-    },
-    {
-      id: 2,
-      type: 'missed_pickup',
-      status: 'ASSIGNED',
-      description: "Dry waste not collected from Building A, Sigma Apartments",
-      reporter_id: 1002,
-      location_lat: 12.9345,
-      location_lng: 77.6265,
-      created_at: new Date('2023-05-16'),
-      assigned_to: 1,
-      reporter_name: "Priya Patel",
-      reporter_phone: "+91 8765432109",
-      address: "Sigma Apartments, Koramangala, Bengaluru"
-    },
-    {
-      id: 3,
-      type: 'illegal_dumping',
-      status: 'RECEIVED',
-      description: "Household garbage dumped in vacant lot next to supermarket",
-      reporter_id: 1003,
-      location_lat: 12.9716,
-      location_lng: 77.5946,
-      created_at: new Date('2023-05-17'),
-      assigned_to: null,
-      reporter_name: "Vikram Singh",
-      reporter_phone: "+91 7654321098",
-      address: "Commercial Street, Shivajinagar, Bengaluru"
-    },
-    {
-      id: 4,
-      type: 'overflowing_bins',
-      status: 'IN_PROGRESS',
-      description: "Community bin overflowing for 2 days near bus stop",
-      reporter_id: 1004,
-      location_lat: 12.9300,
-      location_lng: 77.6830,
-      created_at: new Date('2023-05-14'),
-      assigned_to: 2,
-      reporter_name: "Anjali Mehta",
-      reporter_phone: "+91 6543210987",
-      address: "BTM Layout 2nd Stage, Bengaluru"
-    },
-    {
-      id: 5,
-      type: 'missed_pickup',
-      status: 'RESOLVED',
-      description: "Wet waste not collected on Tuesday as scheduled",
-      reporter_id: 1005,
-      location_lat: 12.9581,
-      location_lng: 77.7010,
-      created_at: new Date('2023-05-12'),
-      assigned_to: 1,
-      reporter_name: "Sanjay Kumar",
-      reporter_phone: "+91 9432109876",
-      address: "Indiranagar 100 Feet Road, Bengaluru"
-    },
-  ];
+  // Fetch drivers from Firebase users collection where role is 'driver'
+  const fetchDrivers = async () => {
+    try {
+      const usersRef = collection(db, 'users');
+      const q = query(usersRef, where('role', '==', 'driver'));
+      const querySnapshot = await getDocs(q);
+      
+      const driversData = [];
+      querySnapshot.forEach((doc) => {
+        const data = doc.data();
+        driversData.push({
+          id: doc.id,
+          name: data.name || 'Unknown Driver',
+          vehicle: data.vehicle || 'Not assigned',
+          phone: data.phone || 'Not provided',
+          email: data.email || '',
+          address: data.address || ''
+        });
+      });
+      
+      setDrivers(driversData);
+    } catch (error) {
+      console.error('Error fetching drivers:', error);
+    }
+  };
 
-  const mockDrivers = [
-    { id: 1, name: "Rajesh Kumar", vehicle_number: "KA01AB1234", is_active: true, phone: "+91 9123456780" },
-    { id: 2, name: "Suresh Patel", vehicle_number: "KA01CD5678", is_active: true, phone: "+91 8987654321" },
-    { id: 3, name: "Mahesh Reddy", vehicle_number: "KA02EF9012", is_active: true, phone: "+91 7890123456" },
-  ];
+  // Fetch issues from Firebase reports collection
+  const fetchIssues = async () => {
+    try {
+      setLoading(true);
+      const reportsRef = collection(db, 'reports');
+      let q = query(reportsRef, orderBy('createdAt', 'desc'));
+      
+      // Apply filters if they exist
+      if (filters.status) {
+        q = query(q, where('status', '==', filters.status));
+      }
+      if (filters.category) {
+        q = query(q, where('category', '==', filters.category));
+      }
+      
+      const querySnapshot = await getDocs(q);
+      const issuesData = [];
+      
+      querySnapshot.forEach((doc) => {
+        const data = doc.data();
+        issuesData.push({
+          id: doc.id,
+          category: data.category || 'unknown',
+          status: data.status || 'pending',
+          notes: data.notes || 'No description provided',
+          lat: data.lat || 0,
+          lng: data.lng || 0,
+          createdAt: data.createdAt?.toDate() || new Date(),
+          assignedDriverId: data.assignedDriverId || null,
+          userId: data.userId || 'Anonymous',
+          qrCode: data.qrCode || '',
+          verifiedAt: data.verifiedAt?.toDate() || null,
+          verifiedBy: data.verifiedBy || '',
+          photoBase64: data.photoBase64 || null // Add this field
+        });
+      });
+      
+      setIssues(issuesData);
+    } catch (error) {
+      console.error('Error fetching issues:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    // Simulate API call
-    setTimeout(() => {
-      setIssues(mockIssues);
-      setDrivers(mockDrivers.filter(driver => driver.is_active));
-      setLoading(false);
-    }, 1000);
+    fetchDrivers();
+  }, []);
+
+  useEffect(() => {
+    fetchIssues();
   }, [filters]);
 
   const handlePageChange = (newPage) => {
@@ -114,7 +105,7 @@ const IssuesView = () => {
 
   const handleOpenAssignDialog = (issue) => {
     setSelectedIssue(issue);
-    setSelectedDriver(issue.assigned_to || '');
+    setSelectedDriver(issue.assignedDriverId || '');
     setAssignDialogOpen(true);
   };
 
@@ -124,25 +115,41 @@ const IssuesView = () => {
   };
 
   const handleAssignIssue = async () => {
-    // Simulate API call
-    console.log(`Assigning issue ${selectedIssue.id} to driver ${selectedDriver}`);
-    // Update the issue in the local state
-    const updatedIssues = issues.map(issue => 
-      issue.id === selectedIssue.id ? { ...issue, assigned_to: selectedDriver } : issue
-    );
-    setIssues(updatedIssues);
-    setAssignDialogOpen(false);
+    try {
+      if (!selectedIssue) return;
+      
+      // Update the issue in Firebase
+      const issueRef = doc(db, 'reports', selectedIssue.id);
+      await updateDoc(issueRef, {
+        assignedDriverId: selectedDriver || null,
+        status: selectedDriver ? 'assigned' : 'pending'
+      });
+      
+      // Update the issue in the local state
+      const updatedIssues = issues.map(issue => 
+        issue.id === selectedIssue.id ? { 
+          ...issue, 
+          assignedDriverId: selectedDriver,
+          status: selectedDriver ? 'assigned' : 'pending'
+        } : issue
+      );
+      
+      setIssues(updatedIssues);
+      setAssignDialogOpen(false);
+      
+      console.log(`Issue ${selectedIssue.id} assigned to driver ${selectedDriver}`);
+    } catch (error) {
+      console.error('Error assigning issue:', error);
+    }
   };
 
-  // Filter issues based on filters
+  // Filter issues based on search filter
   const filteredIssues = issues.filter(issue => {
     return (
-      (filters.status === '' || issue.status === filters.status) &&
-      (filters.type === '' || issue.type === filters.type) &&
       (filters.search === '' || 
-        issue.description.toLowerCase().includes(filters.search.toLowerCase()) ||
-        issue.id.toString().includes(filters.search) ||
-        (issue.assigned_to && drivers.find(d => d.id === issue.assigned_to)?.name.toLowerCase().includes(filters.search.toLowerCase()))
+        issue.notes.toLowerCase().includes(filters.search.toLowerCase()) ||
+        issue.id.toLowerCase().includes(filters.search.toLowerCase()) ||
+        (issue.assignedDriverId && drivers.find(d => d.id === issue.assignedDriverId)?.name.toLowerCase().includes(filters.search.toLowerCase()))
       )
     );
   });
@@ -154,25 +161,25 @@ const IssuesView = () => {
 
   const getStatusBadge = (status) => {
     const statusConfig = {
-      'RECEIVED': { class: 'bg-secondary', text: 'Received' },
-      'ASSIGNED': { class: 'bg-info', text: 'Assigned' },
-      'IN_PROGRESS': { class: 'bg-primary', text: 'In Progress' },
-      'RESOLVED': { class: 'bg-success', text: 'Resolved' },
-      'CLOSED': { class: 'bg-dark', text: 'Closed' }
+      'pending': { class: 'bg-secondary', text: 'Pending' },
+      'assigned': { class: 'bg-info', text: 'Assigned' },
+      'in_progress': { class: 'bg-primary', text: 'In Progress' },
+      'resolved': { class: 'bg-success', text: 'Resolved' },
+      'closed': { class: 'bg-dark', text: 'Closed' }
     };
     
     const config = statusConfig[status] || { class: 'bg-secondary', text: status };
     return `<span class="badge ${config.class}">${config.text}</span>`;
   };
 
-  const getTypeBadge = (type) => {
-    const typeConfig = {
-      'illegal_dumping': { class: 'bg-danger', text: 'Illegal Dumping' },
-      'missed_pickup': { class: 'bg-warning text-dark', text: 'Missed Pickup' },
-      'overflowing_bins': { class: 'bg-warning', text: 'Overflowing Bins' }
+  const getCategoryBadge = (category) => {
+    const categoryConfig = {
+      'Still': { class: 'bg-danger', text: 'Still Dumping' },
+      'Moving': { class: 'bg-warning text-dark', text: 'Moving Violation' },
+      'Other': { class: 'bg-info', text: 'Other Issue' }
     };
     
-    const config = typeConfig[type] || { class: 'bg-secondary', text: type };
+    const config = categoryConfig[category] || { class: 'bg-secondary', text: category };
     return `<span class="badge ${config.class}">${config.text}</span>`;
   };
 
@@ -194,24 +201,20 @@ const IssuesView = () => {
           <div className="card mb-4">
             <div className="card-header pb-0 d-flex justify-content-between align-items-center">
               <h2
-						className="fw-bold mb-1"
-						style={{
-							background:
-								"linear-gradient(135deg, var(--primary-color), var(--secondary-color))",
-							WebkitBackgroundClip: "text",
-							WebkitTextFillColor: "transparent",
-							backgroundClip: "text",
-              fontSize:"2.5rem"
-						}}
-					>
-						Issue Resolution Dashboard
-					</h2>
+                className="fw-bold mb-1"
+                style={{
+                  background: "linear-gradient(135deg, var(--primary-color), var(--secondary-color))",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                  fontSize: "2.5rem"
+                }}
+              >
+                Issue Resolution Dashboard
+              </h2>
               <div className="d-flex">
-                <button className="btn btn-sm btn-outline-primary me-2">
+                <button className="btn btn-sm btn-outline-primary me-2" onClick={fetchIssues}>
                   <i className="fas fa-sync-alt me-1"></i> Refresh
-                </button>
-                <button className="btn btn-sm btn-primary">
-                  <i className="fas fa-plus me-1"></i> New Issue
                 </button>
               </div>
             </div>
@@ -241,27 +244,27 @@ const IssuesView = () => {
                       onChange={(e) => setFilters({ ...filters, status: e.target.value })}
                     >
                       <option value="">All Statuses</option>
-                      <option value="RECEIVED">Received</option>
-                      <option value="ASSIGNED">Assigned</option>
-                      <option value="IN_PROGRESS">In Progress</option>
-                      <option value="RESOLVED">Resolved</option>
-                      <option value="CLOSED">Closed</option>
+                      <option value="pending">Pending</option>
+                      <option value="assigned">Assigned</option>
+                      <option value="in_progress">In Progress</option>
+                      <option value="resolved">Resolved</option>
+                      <option value="closed">Closed</option>
                     </select>
                   </div>
                 </div>
                 <div className="col-md-3">
                   <div className="form-group">
-                    <label htmlFor="typeFilter" className="form-label">Type</label>
+                    <label htmlFor="categoryFilter" className="form-label">Category</label>
                     <select
                       className="form-select"
-                      id="typeFilter"
-                      value={filters.type}
-                      onChange={(e) => setFilters({ ...filters, type: e.target.value })}
+                      id="categoryFilter"
+                      value={filters.category}
+                      onChange={(e) => setFilters({ ...filters, category: e.target.value })}
                     >
-                      <option value="">All Types</option>
-                      <option value="illegal_dumping">Illegal Dumping</option>
-                      <option value="missed_pickup">Missed Pickup</option>
-                      <option value="overflowing_bins">Overflowing Bins</option>
+                      <option value="">All Categories</option>
+                      <option value="Still">Still Dumping</option>
+                      <option value="Moving">Moving Violation</option>
+                      <option value="Other">Other Issue</option>
                     </select>
                   </div>
                 </div>
@@ -288,8 +291,8 @@ const IssuesView = () => {
                 <table className="table table-hover table-striped">
                   <thead className="table-dark">
                     <tr>
-                      <th scope="col">ID</th>
-                      <th scope="col">Type</th>
+                      <th scope="col">Image</th>
+                      <th scope="col">Category</th>
                       <th scope="col">Description</th>
                       <th scope="col">Status</th>
                       <th scope="col">Assigned To</th>
@@ -300,16 +303,26 @@ const IssuesView = () => {
                   <tbody>
                     {paginatedIssues.length > 0 ? (
                       paginatedIssues.map((issue) => {
-                        const assignedDriver = drivers.find(d => d.id === issue.assigned_to);
+                        const assignedDriver = drivers.find(d => d.id === issue.assignedDriverId);
                         return (
                           <tr key={issue.id}>
-                            <td className="fw-bold">#{issue.id}</td>
-                            <td>
-                              <span dangerouslySetInnerHTML={{ __html: getTypeBadge(issue.type) }} />
+                            <td className="fw-bold">
+                              {issue.photoBase64 ? (
+                                <img 
+                                  src={`data:image/jpeg;base64,${issue.photoBase64}`} 
+                                  alt="Issue" 
+                                  style={{ width: '50px', height: '50px', objectFit: 'cover', borderRadius: '4px' }}
+                                />
+                              ) : (
+                                `#${issue.id.substring(0, 8)}...`
+                              )}
                             </td>
                             <td>
-                              <div className="text-truncate" style={{ maxWidth: '200px' }} title={issue.description}>
-                                {issue.description}
+                              <span dangerouslySetInnerHTML={{ __html: getCategoryBadge(issue.category) }} />
+                            </td>
+                            <td>
+                              <div className="text-truncate" style={{ maxWidth: '200px' }} title={issue.notes}>
+                                {issue.notes}
                               </div>
                             </td>
                             <td>
@@ -319,13 +332,13 @@ const IssuesView = () => {
                               {assignedDriver ? (
                                 <div>
                                   <div className="fw-bold">{assignedDriver.name}</div>
-                                  <small className="text-muted">{assignedDriver.vehicle_number}</small>
+                                  <small className="text-muted">{assignedDriver.vehicle}</small>
                                 </div>
                               ) : (
                                 <span className="text-muted">Unassigned</span>
                               )}
                             </td>
-                            <td>{new Date(issue.created_at).toLocaleDateString()}</td>
+                            <td>{issue.createdAt.toLocaleDateString()}</td>
                             <td>
                               <div className="btn-group">
                                 <button 
@@ -401,11 +414,20 @@ const IssuesView = () => {
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
-              <h5 className="modal-title">Assign Issue #{selectedIssue?.id}</h5>
+              <h5 className="modal-title">Assign Issue #{selectedIssue?.id?.substring(0, 8)}...</h5>
               <button type="button" className="btn-close" onClick={() => setAssignDialogOpen(false)}></button>
             </div>
             <div className="modal-body">
-              <p className="mb-3">{selectedIssue?.description}</p>
+              {selectedIssue?.photoBase64 && (
+                <div className="text-center mb-3">
+                  <img 
+                    src={`data:image/jpeg;base64,${selectedIssue.photoBase64}`} 
+                    alt="Issue" 
+                    style={{ maxWidth: '100%', maxHeight: '200px', borderRadius: '4px' }}
+                  />
+                </div>
+              )}
+              <p className="mb-3">{selectedIssue?.notes}</p>
               <div className="form-group">
                 <label className="form-label">Select a driver:</label>
                 <select 
@@ -416,7 +438,7 @@ const IssuesView = () => {
                   <option value="">Unassign</option>
                   {drivers.map((driver) => (
                     <option key={driver.id} value={driver.id}>
-                      {driver.name} ({driver.vehicle_number})
+                      {driver.name} ({driver.vehicle})
                     </option>
                   ))}
                 </select>
@@ -435,7 +457,7 @@ const IssuesView = () => {
         <div className="modal-dialog modal-lg">
           <div className="modal-content">
             <div className="modal-header">
-              <h5 className="modal-title">Issue Details #{issueDetails?.id}</h5>
+              <h5 className="modal-title">Issue Details #{issueDetails?.id?.substring(0, 8)}...</h5>
               <button type="button" className="btn-close" onClick={() => setViewDialogOpen(false)}></button>
             </div>
             <div className="modal-body">
@@ -447,12 +469,21 @@ const IssuesView = () => {
                         <h6 className="mb-0">Issue Information</h6>
                       </div>
                       <div className="card-body">
+                        {issueDetails.photoBase64 && (
+                          <div className="text-center mb-3">
+                            <img 
+                              src={`data:image/jpeg;base64,${issueDetails.photoBase64}`} 
+                              alt="Issue" 
+                              style={{ maxWidth: '100%', maxHeight: '300px', borderRadius: '4px' }}
+                            />
+                          </div>
+                        )}
                         <table className="table table-borderless">
                           <tbody>
                             <tr>
-                              <th width="30%">Type:</th>
+                              <th width="30%">Category:</th>
                               <td>
-                                <span dangerouslySetInnerHTML={{ __html: getTypeBadge(issueDetails.type) }} />
+                                <span dangerouslySetInnerHTML={{ __html: getCategoryBadge(issueDetails.category) }} />
                               </td>
                             </tr>
                             <tr>
@@ -463,16 +494,22 @@ const IssuesView = () => {
                             </tr>
                             <tr>
                               <th>Description:</th>
-                              <td>{issueDetails.description}</td>
+                              <td>{issueDetails.notes}</td>
                             </tr>
                             <tr>
                               <th>Reported On:</th>
-                              <td>{new Date(issueDetails.created_at).toLocaleString()}</td>
+                              <td>{issueDetails.createdAt.toLocaleString()}</td>
                             </tr>
                             <tr>
-                              <th>Address:</th>
-                              <td>{issueDetails.address}</td>
+                              <th>Location:</th>
+                              <td>Lat: {issueDetails.lat}, Lng: {issueDetails.lng}</td>
                             </tr>
+                            {issueDetails.qrCode && (
+                              <tr>
+                                <th>QR Code:</th>
+                                <td>{issueDetails.qrCode}</td>
+                              </tr>
+                            )}
                           </tbody>
                         </table>
                       </div>
@@ -487,29 +524,21 @@ const IssuesView = () => {
                         <table className="table table-borderless">
                           <tbody>
                             <tr>
-                              <th width="30%">Name:</th>
-                              <td>{issueDetails.reporter_name}</td>
-                            </tr>
-                            <tr>
-                              <th>Phone:</th>
-                              <td>{issueDetails.reporter_phone}</td>
-                            </tr>
-                            <tr>
-                              <th>Reporter ID:</th>
-                              <td>#{issueDetails.reporter_id}</td>
+                              <th width="30%">User ID:</th>
+                              <td>{issueDetails.userId}</td>
                             </tr>
                           </tbody>
                         </table>
                       </div>
                     </div>
-                    {issueDetails.assigned_to && (
+                    {issueDetails.assignedDriverId && (
                       <div className="card">
                         <div className="card-header">
                           <h6 className="mb-0">Assigned Driver</h6>
                         </div>
                         <div className="card-body">
                           {(() => {
-                            const driver = drivers.find(d => d.id === issueDetails.assigned_to);
+                            const driver = drivers.find(d => d.id === issueDetails.assignedDriverId);
                             return driver ? (
                               <table className="table table-borderless">
                                 <tbody>
@@ -518,16 +547,22 @@ const IssuesView = () => {
                                     <td>{driver.name}</td>
                                   </tr>
                                   <tr>
-                                    <th>Vehicle No:</th>
-                                    <td>{driver.vehicle_number}</td>
+                                    <th>Vehicle:</th>
+                                    <td>{driver.vehicle}</td>
                                   </tr>
                                   <tr>
                                     <th>Phone:</th>
                                     <td>{driver.phone}</td>
                                   </tr>
+                                  <tr>
+                                    <th>Email:</th>
+                                    <td>{driver.email}</td>
+                                  </tr>
                                 </tbody>
                               </table>
-                            ) : null;
+                            ) : (
+                              <p className="text-muted">Driver information not available</p>
+                            );
                           })()}
                         </div>
                       </div>
@@ -538,7 +573,7 @@ const IssuesView = () => {
             </div>
             <div className="modal-footer">
               <button type="button" className="btn btn-secondary" onClick={() => setViewDialogOpen(false)}>Close</button>
-              {!issueDetails?.assigned_to && (
+              {!issueDetails?.assignedDriverId && (
                 <button 
                   type="button" 
                   className="btn btn-primary"
