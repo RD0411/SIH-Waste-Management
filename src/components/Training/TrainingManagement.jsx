@@ -2,21 +2,22 @@ import React, { useState, useEffect } from 'react';
 import { initializeApp } from 'firebase/app';
 import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc } from 'firebase/firestore';
 import './TrainingManagement.css';
+import app, {db, storage, auth} from '../../firebase';
 
-// Firebase configuration - replace with your actual config
-const firebaseConfig = {
-  apiKey: "AIzaSyBr44ELiMhReF2swR4lNThm1q959_1W7d0",
-  authDomain: "wastemanagement-5886b.firebaseapp.com",
-  projectId: "wastemanagement-5886b",
-  storageBucket: "wastemanagement-5886b.firebasestorage.app",
-  messagingSenderId: "536287026211",
-  appId: "1:536287026211:web:336cd0b3ca221bc368a596",
-  measurementId: "G-KZG0ZYQ2W6"
-};
+// // Firebase configuration - replace with your actual config
+// const firebaseConfig = {
+//   apiKey: "AIzaSyBr44ELiMhReF2swR4lNThm1q959_1W7d0",
+//   authDomain: "wastemanagement-5886b.firebaseapp.com",
+//   projectId: "wastemanagement-5886b",
+//   storageBucket: "wastemanagement-5886b.firebasestorage.app",
+//   messagingSenderId: "536287026211",
+//   appId: "1:536287026211:web:336cd0b3ca221bc368a596",
+//   measurementId: "G-KZG0ZYQ2W6"
+// };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+// // Initialize Firebase
+// const app = initializeApp(firebaseConfig);
+// const db = getFirestore(app);
 
 const TrainingManagement = () => {
   const [trainings, setTrainings] = useState([]);
