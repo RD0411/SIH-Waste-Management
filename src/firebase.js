@@ -5,13 +5,13 @@ import { getStorage } from "firebase/storage";
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBr44ELiMhReF2swR4lNThm1q959_1W7d0",
-  authDomain: "wastemanagement-5886b.firebaseapp.com",
-  projectId: "wastemanagement-5886b",
-  storageBucket: "wastemanagement-5886b.firebasestorage.app",
-  messagingSenderId: "536287026211",
-  appId: "1:536287026211:web:336cd0b3ca221bc368a596",
-  measurementId: "G-KZG0ZYQ2W6"
+  apiKey: import .meta.env.VITE_API_KEY,
+  authDomain: import .meta.env.VITE_AUTH_DOMAIN,
+  projectId: import .meta.env.VITE_PROJECT_ID,
+  storageBucket: import .meta.env.VITE_STORAGE_BUCKET,
+  messagingSenderId: import .meta.env.VITE_MESSAGING_SENDER_ID,
+  appId: import .meta.env.VITE_APP_ID,
+  measurementId: import .meta.env.VITE_MEASUREMENT_ID
 };
 
 const app = initializeApp(firebaseConfig);
