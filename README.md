@@ -13,3 +13,6 @@ Password- 123456
 Youtube Link:
 https://youtu.be/0U-vVc-MVQk
 
+
+ScreenShots
+<img src="https://github.com/RD0411/SIH-Waste-Management/blob/Images/citizen.png" alt="GitHub Logo" width="100"/>
