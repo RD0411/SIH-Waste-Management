@@ -19,3 +19,11 @@
 <p align="center">
   <img src="https://github.com/RD0411/SIH-Waste-Management/blob/Images/citizen.png" alt="Citizen Dashboard" width="800"/>
 </p>
+
+<p align="center">
+  <img src="https://github.com/RD0411/SIH-Waste-Management/blob/Images/citizen.png" alt="Citizen Dashboard" width="800"/>
+</p>
+
+<p align="center">
+  <img src="https://github.com/RD0411/SIH-Waste-Management/blob/Images/citizen.png" alt="Citizen Dashboard" width="800"/>
+</p>
