@@ -14,7 +14,7 @@
 
 ---
 
-## 📸 Screenshots
+### 📸 Screenshots
 
 <p align="center">
   <img src="https://github.com/RD0411/SIH-Waste-Management/blob/Images/citizen.png" alt="Citizen Dashboard" width="800"/>
@@ -30,7 +30,7 @@
 
 
 
-## State Analyst
+## State Analyst Web
 <p align="center">
 <img src="https://github.com/RD0411/SIH-Waste-Management/blob/Images/Screenshot%202025-10-09%20073508.png" alt="State 1" width="800"/>
 </p>
@@ -41,7 +41,7 @@
 
 
 
-## ULB Operator
+## ULB Operator Web
 <p align="center">
 <img src="https://github.com/RD0411/SIH-Waste-Management/blob/Images/Screenshot%202025-10-09%20072839.png" alt="ULB Operator Home" width="500"/>
 </p>
