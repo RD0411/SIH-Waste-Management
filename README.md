@@ -98,4 +98,14 @@
 </table>
 
 
+## 👥 System Roles
 
+| Role | Platform | Description |
+|------|-----------|-------------|
+| **Citizen** | 📱 Mobile App | Reports waste, earns green points, and participates in community events. |
+| **Waste Worker / Driver** | 📱 Mobile App | Collects waste from verified reports and completes assigned routes. |
+| **Green Champion** | 📱 Mobile App | Verifies reports, monitors waste locations, and promotes community engagement. |
+| **ULB Operator** | 💻 Web Portal | Manages routes, drivers, inventory, training, and penalty systems. |
+| **State Analyst** | 💻 Web Portal | Monitors analytics, trends, and policy impact at a state level. |
+
+---
