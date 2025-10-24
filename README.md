@@ -14,7 +14,7 @@
 
 ---
 
-### 📸 Screenshots
+# 📸 Screenshots
 
 <p align="center">
   <img src="https://github.com/RD0411/SIH-Waste-Management/blob/Images/citizen.png" alt="Citizen Dashboard" width="800"/>
@@ -42,55 +42,61 @@
 
 
 ## ULB Operator Web
-<p align="center">
-<img src="https://github.com/RD0411/SIH-Waste-Management/blob/Images/Screenshot%202025-10-09%20072839.png" alt="ULB Operator Home" width="500"/>
-</p>
+<table align="center">
+  <tr>
+    <td align="center">
+      <img src="https://github.com/RD0411/SIH-Waste-Management/blob/Images/Screenshot%202025-10-09%20072839.png" alt="ULB Operator Dashboard 1" width="450"/>
+    </td>
+    <td align="center">
+      <img src="https://github.com/RD0411/SIH-Waste-Management/blob/Images/Screenshot%202025-10-09%20072902.png" alt="ULB Operator Dashboard 2" width="450"/>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="https://github.com/RD0411/SIH-Waste-Management/blob/Images/Screenshot%202025-10-09%20072839.png" alt="ULB Operator Dashboard 3" width="450"/>
+    </td>
+    <td align="center">
+      <img src="https://github.com/RD0411/SIH-Waste-Management/blob/Images/Screenshot%202025-10-09%20072930.png" alt="ULB Operator Dashboard 4" width="450"/>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="https://github.com/RD0411/SIH-Waste-Management/blob/Images/Screenshot%202025-10-09%20072839.png" alt="ULB Operator Dashboard 5" width="450"/>
+    </td>
+    <td align="center">
+      <img src="https://github.com/RD0411/SIH-Waste-Management/blob/Images/Screenshot%202025-10-09%20072949.png" alt="ULB Operator Dashboard 6" width="450"/>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="https://github.com/RD0411/SIH-Waste-Management/blob/Images/Screenshot%202025-10-09%20072839.png" alt="ULB Operator Dashboard 7" width="450"/>
+    </td>
+    <td align="center">
+      <img src="https://github.com/RD0411/SIH-Waste-Management/blob/Images/Screenshot%202025-10-09%20073108.png" alt="ULB Operator Dashboard 8" width="450"/>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="https://github.com/RD0411/SIH-Waste-Management/blob/Images/Screenshot%202025-10-09%20073131.png" alt="ULB Operator Dashboard 9" width="450"/>
+    </td>
+    <td align="center">
+      <img src="https://github.com/RD0411/SIH-Waste-Management/blob/Images/Screenshot%202025-10-09%20073149.png" alt="ULB Operator Dashboard 10" width="450"/>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="https://github.com/RD0411/SIH-Waste-Management/blob/Images/Screenshot%202025-10-09%20073212.png" alt="ULB Operator Dashboard 11" width="450"/>
+    </td>
+    <td align="center">
+      <img src="https://github.com/RD0411/SIH-Waste-Management/blob/Images/Screenshot%202025-10-09%20073235.png" alt="ULB Operator Dashboard 12" width="450"/>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" colspan="2">
+      <img src="https://github.com/RD0411/SIH-Waste-Management/blob/Images/Screenshot%202025-10-09%20073252.png" alt="ULB Operator Dashboard 13" width="450"/>
+    </td>
+  </tr>
+</table>
 
-<p align="center">
-<img src="https://github.com/RD0411/SIH-Waste-Management/blob/Images/Screenshot%202025-10-09%20072902.png" alt="ULB Operator Home" width="500"/>
-</p>
-<p align="center">
-<img src="https://github.com/RD0411/SIH-Waste-Management/blob/Images/Screenshot%202025-10-09%20072839.png" alt="ULB Operator 1" width="500"/>
-</p>
-
-<p align="center">
-<img src="https://github.com/RD0411/SIH-Waste-Management/blob/Images/Screenshot%202025-10-09%20072930.png" alt="ULB Operator 2" width="500"/>
-</p>
-
-<p align="center">
-<img src="https://github.com/RD0411/SIH-Waste-Management/blob/Images/Screenshot%202025-10-09%20072839.png" alt="ULB Operator 3" width="500"/>
-</p>
-
-<p align="center">
-<img src="https://github.com/RD0411/SIH-Waste-Management/blob/Images/Screenshot%202025-10-09%20072949.png" alt="ULB Operator 4" width="500"/>
-</p>
-
-<p align="center">
-<img src="https://github.com/RD0411/SIH-Waste-Management/blob/Images/Screenshot%202025-10-09%20072839.png" alt="ULB Operator 5" width="500"/>
-</p>
-
-<p align="center">
-<img src="https://github.com/RD0411/SIH-Waste-Management/blob/Images/Screenshot%202025-10-09%20073108.png" alt="ULB Operator 6" width="500"/>
-</p>
-
-<p align="center">
-<img src="https://github.com/RD0411/SIH-Waste-Management/blob/Images/Screenshot%202025-10-09%20073131.png" alt="ULB Operator 7" width="500"/>
-</p>
-
-<p align="center">
-<img src="https://github.com/RD0411/SIH-Waste-Management/blob/Images/Screenshot%202025-10-09%20073149.png" alt="ULB Operator 8" width="500"/>
-</p>
-
-<p align="center">
-<img src="https://github.com/RD0411/SIH-Waste-Management/blob/Images/Screenshot%202025-10-09%20073212.png" alt="ULB Operator 9" width="500"/>
-</p>
-
-<p align="center">
-<img src="https://github.com/RD0411/SIH-Waste-Management/blob/Images/Screenshot%202025-10-09%20073235.png" alt="ULB Operator 10" width="500"/>
-</p>
-
-<p align="center">
-<img src="https://github.com/RD0411/SIH-Waste-Management/blob/Images/Screenshot%202025-10-09%20073252.png" alt="ULB Operator 11" width="500"/>
-</p>
 
 
