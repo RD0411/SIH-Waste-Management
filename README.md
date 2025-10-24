@@ -27,6 +27,8 @@
 <p align="center">
   <img src="https://github.com/RD0411/SIH-Waste-Management/blob/Images/greenChampion.png" alt="Citizen Dashboard" width="800"/>
 </p>
+
+## ULB Operator
 <p align="center">
 <img src="https://github.com/RD0411/SIH-Waste-Management/blob/Images/Screenshot%202025-10-09%20072839.png" alt="ULB Operator Home" width="800"/>
 </p>
@@ -78,6 +80,7 @@
 <img src="https://github.com/RD0411/SIH-Waste-Management/blob/Images/Screenshot%202025-10-09%20073252.png" alt="ULB Operator 11" width="800"/>
 </p>
 
+## State Analyst
 <p align="center">
 <img src="https://github.com/RD0411/SIH-Waste-Management/blob/Images/Screenshot%202025-10-09%20073508.png" alt="ULB Operator 12" width="800"/>
 </p>
