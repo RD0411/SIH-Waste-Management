@@ -6,7 +6,7 @@
 
 ### 🔑 For ULB Operator Login  
 **ID:** rajdebadwar@gmail.com  
-**Password:** raajs11  
+**Password:** raj123  
 
 ### 🧠 For State Analyst Login  
 **ID:** state@gmail.com  
