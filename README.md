@@ -1,17 +1,7 @@
 ### ▶️ YouTube Link [MUST WATCH]
 [https://youtu.be/0U-vVc-MVQk](https://youtu.be/0U-vVc-MVQk)
 
-## WEBSITE LINK FOR ULB OPERATOR AND STATE ANALYST ROLE:
-[https://sih-waste-management.vercel.app/](https://sih-waste-management.vercel.app/)
-
-### 🔑 For ULB Operator Login  
-**ID:** rajdebadwar@gmail.com  
-**Password:** raj123  
-
-### 🧠 For State Analyst Login  
-**ID:** state@gmail.com  
-**Password:** 123456  
----
+## Visit Here: https://drive.google.com/drive/folders/1vuk96lLVvFATncyGvP-IP9HpMoYZWKzx
 
 # 📸 Screenshots
 
